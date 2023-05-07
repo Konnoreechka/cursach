@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <link type="text/css" href="https://fonts.cdnfonts.com/css/italiana" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Oswald" />
+    <meta charset="UTF-8">
+    <title>Profile Page</title>
+    <style>
+        /* Global styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+
+        }
+
+        body {
+            font-size: 16px;
+            line-height: 1.4;
+        }
+
+        /* Header styles */
+        .header {
+            display: flex;
+            background-color: white;
+            justify-content: center;
+            color: black;
+            padding: 20px;
+            text-align: center;
+            font-family: 'Italiana', sans-serif;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+
+
+
+
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], input[type="email"], input[type="submit"], input[type="file"], input[type="button"] {
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            padding: 10px;
+            width: 100%;
+        }
+
+        input[type="button"] {
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: black;
+            color: #fff;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        input[type="button"]:hover {
+            background-color: #555;
+        }
+
+        .container{
+            display: grid;
+            font-family: Oswald;
+        }
+
+
+
+
+
+        .second-block{
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            height: 62vh;
+        }
+
+        .desc{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 5%;
+        }
+
+        .desc-class{
+            background: #FFFFFF;
+            box-shadow: 0px 10px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+            width: 80%;
+            text-align: center;
+
+
+        }
+
+        .footer{
+            margin-top: 5.5%;
+            background-color: #BF8348;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-family: 'Italiana', sans-serif;
+        }
+
+
+    </style>
+</head>
+<body>
+<header class="header">
+    <h1>BeautyClinic.BY</h1>
+    <a style="text-decoration: none; font-size: 25px;margin-left: 70%; margin-top: 1%;" th:href="@{/login}">Войти</a>
+</header>
+<hr style="margin: 0">
+<div class="container">
+
+    <div class="second-block">
+        <h1 style="margin: 0">Наши услуги</h1>
+        <hr style="margin: 0">
+        <div class="desc">
+
+            <a th:href="@{/service/1}"><img src="../../playground_assets/serv1.png" class="desc-class"></a>
+
+            <a th:href="@{/service/2}"><img src="../../playground_assets/serv2.png" class="desc-class" style="margin-left: 10%"></a>
+            <a th:href="@{/service/3}"><img src="../../playground_assets/serv3.png" class="desc-class" style="margin-left: 20%"></a>
+        </div>
+    </div>
+    <a style="text-decoration: none; display: flex; justify-content: center; font-size: 45px; color: black" th:href="@{/faq}">Часто задаваемые вопросы</a>
+    <footer class="footer"><h1>BeautyClinic.BY</h1></footer>
+</div>
+
+
+</body>
+</html>

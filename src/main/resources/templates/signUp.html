@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Oswald" />
+  <meta charset="UTF-8">
+  <title>Registration Page</title>
+  <style>
+    /* Global styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Oswald', sans-serif;
+      font-size: 16px;
+      line-height: 1.4;
+      background-color: #eee;
+    }
+
+    /* Header styles */
+    .header {
+      background-color: #BF8348;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    /* Form styles */
+    .form-container {
+      margin: 20px auto;
+      max-width: 600px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"], input[type="email"], input[type="password"], input[type="submit"] {
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      padding: 10px;
+      width: 100%;
+    }
+
+    input[type="submit"] {
+      background-color: #BF8348;
+      color: #fff;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #BF8380;
+    }
+
+    /* Media queries */
+    @media only screen and (min-width: 768px) {
+      .header h1 {
+        font-size: 48px;
+      }
+
+      .form-container {
+        padding: 40px;
+      }
+
+      label {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      input[type="text"], input[type="email"], input[type="password"], input[type="submit"] {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+<header class="header">
+  <h1>Регистрация</h1>
+</header>
+<section class="form-container">
+  <form th:action="@{/signUp}" method="post">
+    <label for="firstname">Имя:</label>
+    <input type="text" id="firstname" name="firstname" placeholder="Имя" minlength="2" required>
+
+    <label for="lastname">Фамилия:</label>
+    <input type="text" id="lastname" name="lastname" placeholder="Фамилия" minlength="3" required>
+
+    <h6 th:text="${valid}"></h6>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="Email" minlength="12" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="Enter your password" minlength="8" required>
+
+    <input type="submit" value="Зарегистрироваться">
+  </form>
+  <a th:href="@{/login}">Войти</a>
+</section>
+</body>
+</html>

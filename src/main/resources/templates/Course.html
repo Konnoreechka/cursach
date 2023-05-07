@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <link type="text/css" href="https://fonts.cdnfonts.com/css/italiana" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Oswald" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            for (let i =0; i<3;i++){
+                $( '#datepicker'+i ).datepicker({
+                    minDate: 0,showButtonPanel: true
+                });
+            }
+
+
+        }
+        );
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выбор курса</title>
+    <style>
+        body {
+            font-family: 'Oswald';
+            margin: 0;
+            padding: 0;
+
+        }
+
+        .container {
+            display: grid;
+            margin: 0 0;
+            position: relative;
+            height: 82vh;
+
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        label {
+            font-size: 18px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        select {
+            font-size: 18px;
+            padding: 10px 15px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .course-description {
+            font-size: 18px;
+            margin-left: 5%;
+            }
+
+            .course-description p {
+                margin-bottom: 10px;
+            }
+
+            button {
+                font-size: 18px;
+                padding: 10px 15px;
+                background-color: blue;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+
+            button:hover {
+                background-color: #007bff;
+            }
+
+            @media (max-width: 600px) {
+                .container {
+                    padding: 20px 10px;
+                }
+
+                h1 {
+                    font-size: 24px;
+                    margin-bottom: 20px;
+                }
+
+                label, select, .course-description, button {
+                    font-size: 16px;
+                }
+            }
+
+            .footer{
+                /* margin-top: 5.5%; */
+                background-color: #000000;
+                color: #fff;
+                /* padding: 20px; */
+                text-align: center;
+            }
+
+
+            .first-block {
+                display: grid;
+                color: black;
+                background-position: center;
+                height: 40vh;
+                justify-content: center;
+                align-items: center;
+            }
+
+
+            .second-block{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 4%;
+                margin-bottom: 4%;
+            }
+
+            /* Header styles */
+        .header {
+            display: flex;
+            background-color: white;
+            justify-content: center;
+            color: black;
+            padding: 20px;
+            text-align: center;
+            font-family: 'Italiana', sans-serif;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .footer{
+            margin-top: 5.5%;
+            background-color: #BF8348;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-family: 'Italiana', sans-serif;
+        }
+    </style>
+
+</head>
+
+<body>
+<header class="header">
+    <h1>BeautyClinic.BY</h1>
+    <div sec:authorize="isAuthenticated()" class="text-center p-3" style="margin-left: 75%">
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Выйти" class="logout" />
+        </form>
+    </div>
+</header>
+<hr style="margin: 0">
+
+<div class="container">
+
+
+    <div class="second-block">
+        <form th:action="@{/user/course}" method="post" th:each="program:${programs}">
+            <div th:id="${program.getId()}" th:name="${program.getProgram()}" class="course-description">
+
+
+                <div  th:text="'Категория: ' + ${program.getProgram()}"></div>
+                <br>
+                <div th:text="'Сумма: ' + ${ program.getPrice()}  + ' BYN '"></div>
+                <br>
+                <label th:for="${program.getId()}">Дата
+                    <input type="text" name="date" th:id="'datepicker' + ${program.getId()}" required>
+                </label>
+
+                <input type="text" name="program" th:value="${program.getProgram()}" style="visibility: hidden">
+                <button type="submit">Выбрать</button>
+                <hr>
+            </div>
+        </form>
+    </div>
+    <footer class="footer"><h1>BeautyClinic.BY</h1></footer>
+</div>
+</body>
+</html>
